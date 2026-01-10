@@ -1,0 +1,106 @@
+.why-section {
+  min-height: 100vh;
+  padding: 120px 8%;
+  background: black;
+  color: white;
+}
+
+.why-title {
+  font-size: 2.8rem;
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+/* GRID */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 36px;
+}
+
+@media (max-width: 1024px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   CARD WITH TRUE OUTER BORDER
+   ========================= */
+.why-card {
+  position: relative;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  padding: 36px 28px;
+  z-index: 1;
+}
+
+/* OUTER animated border – FIXED */
+.why-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;                /* outside the card */
+  border-radius: 20px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    #b44cff 40deg,
+    transparent 80deg
+  );
+  animation: spinBorder 5s linear infinite;
+  z-index: -1;
+
+  /* CRITICAL PART – blocks inner bleed */
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    black calc(100% - 2px)
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    black calc(100% - 2px)
+  );
+
+  pointer-events: none;
+}
+
+/* subtle lift on hover */
+.why-card:hover {
+  transform: translateY(-8px);
+  transition: transform 0.3s ease;
+}
+
+/* animation */
+@keyframes spinBorder {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* CONTENT */
+.why-card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.why-card-content h3 {
+  font-size: 1.35rem;
+  margin-bottom: 14px;
+}
+
+.why-card-content p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  opacity: 0.85;
+}
