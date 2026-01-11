@@ -1,0 +1,29 @@
+.get-started-btn {
+  position: relative;
+  padding: 14px 36px;
+  border-radius: 30px;
+  background: #b44cff;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  cursor: none; /* important for target cursor */
+  transition: transform 0.3s ease;
+}
+
+.get-started-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ripple pulse */
+.get-started-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(180, 76, 255, 0.6);
+  transition: box-shadow 0.4s ease;
+}
+
+.get-started-btn:hover::after {
+  box-shadow: 0 0 0 14px rgba(180, 76, 255, 0);
+}

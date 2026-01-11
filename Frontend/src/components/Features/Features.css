@@ -1,0 +1,119 @@
+.features-section {
+  min-height: 100vh;
+  padding: 120px 8%;
+  background: black;
+  color: white;
+  overflow-x: hidden; /* important for looping */
+}
+
+.features-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 70px;
+}
+
+/* ======================
+   LOOP TRACK (REPLACES GRID)
+====================== */
+
+.features-grid {
+  display: flex;                 /* 🔥 changed from grid */
+  gap: 36px;
+  width: max-content;
+  animation: featureLoop 30s linear infinite;
+}
+
+/* Pause loop ONLY when hovering a card */
+.feature-card:hover ~ .feature-card,
+.feature-card:hover {
+  pointer-events: auto;
+}
+
+/* Actual pause logic */
+.features-grid:has(.feature-card:hover) {
+  animation-play-state: paused;
+}
+
+
+/* ======================
+   FEATURE CARD
+====================== */
+
+.feature-card {
+  position: relative;
+  min-width: 320px;
+  max-width: 320px;
+  border-radius: 20px;
+  padding: 36px 30px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* OUTER ANIMATED BORDER */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    #b44cff 18%,
+    transparent 35%
+  );
+  animation: rotateBorder 3s linear infinite;
+  z-index: -1;
+}
+
+/* Hover lift */
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(180, 76, 255, 0.25);
+}
+
+/* CONTENT */
+.feature-content {
+  position: relative;
+  z-index: 2;
+}
+
+.feature-icon {
+  font-size: 1.6rem;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+.feature-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.feature-content p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* ======================
+   ANIMATIONS
+====================== */
+
+@keyframes featureLoop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes rotateBorder {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

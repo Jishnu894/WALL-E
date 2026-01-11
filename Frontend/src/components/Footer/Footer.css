@@ -1,0 +1,23 @@
+.footer {
+  background: black;
+  padding: 40px 8%;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-copy {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 8px;
+}
+
+.footer-copy span {
+  color: white;
+  font-weight: 600;
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+}
