@@ -2,24 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global styles */
-html, body, #root {
-  background-color: black;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
+/* ===============================
+   GLOBAL RESET + SCROLL CONTROL
+================================ */
+
+* {
+  box-sizing: border-box;
+  cursor: none; /* hide system cursor */
 }
 
+/* Lock horizontal scroll */
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;   /* 🚫 no left-right */
+  overflow-y: auto;     /* ✅ up-down only */
+  background-color: black;
+}
+
+#root {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   BASE THEME
+================================ */
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,25 +49,23 @@ html, body, #root {
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  color: white;
+  text-decoration: none;
 }
 
+a:hover {
+  opacity: 0.85;
+}
+
+/* Remove default flex centering */
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+/* ===============================
+   BUTTON BASE
+================================ */
 
 button {
   border-radius: 8px;
@@ -57,29 +75,13 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
-  cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+/* ===============================
+   TYPEWRITER CURSOR (TEXT)
+================================ */
+
 .cursor {
   animation: blink 1s infinite;
 }
@@ -91,4 +93,52 @@ button:focus-visible {
   25%, 75% {
     opacity: 0;
   }
+}
+
+/* Hide default cursor */
+* {
+  cursor: none;
+}
+
+/* Base cursor */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b44cff;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    border-radius 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Active (button hover) */
+.custom-cursor.active {
+  border-color: #ffffff;
+}
+
+
+/* ===============================
+   HIDE SCROLLBAR (KEEP SCROLL)
+================================ */
+
+/* Chrome / Edge / Safari */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* IE / old Edge */
+body {
+  -ms-overflow-style: none;
 }

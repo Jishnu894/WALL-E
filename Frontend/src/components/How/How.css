@@ -1,0 +1,126 @@
+.how-section {
+  min-height: 100vh;
+  padding: 120px 8%;
+  background: black;
+  color: white;
+}
+
+.how-title {
+  font-size: 2.8rem;
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+/* GRID */
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .how-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CARD */
+.how-card {
+  position: relative;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  padding: 36px 28px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* OUTER animated border — STRONGER */
+.how-card::before {
+  content: "";
+  position: absolute;
+  inset: -3px; /* slightly more outside */
+  border-radius: 22px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    #c77dff 15%,
+    #9b5cff 30%,
+    transparent 45%
+  );
+  animation: borderSpin 2.8s linear infinite;
+  filter: blur(0.5px);
+  opacity: 0.95;
+  z-index: -1;
+}
+
+
+/* optional soft glow */
+.how-card::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 26px;
+  background: radial-gradient(
+    circle,
+    rgba(155, 92, 255, 0.35),
+    transparent 65%
+  );
+  z-index: -2;
+  pointer-events: none;
+}
+
+
+/* hover lift */
+.how-card:hover {
+  transform: translateY(-8px);
+  transition: transform 0.35s ease;
+}
+
+/* animation */
+@keyframes borderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* left accent line */
+.how-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20px;
+  bottom: 20px;
+  width: 3px;
+  border-radius: 3px;
+  background: #b44cff;
+}
+
+/* hover */
+.how-card:hover {
+  transform: translateY(-6px);
+  border: 1px solid rgba(180, 76, 255, 0.5);
+}
+
+/* STEP NUMBER */
+.how-step {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #b44cff;
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.how-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 14px;
+}
+
+.how-card p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  opacity: 0.85;
+}
